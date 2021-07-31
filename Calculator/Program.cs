@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace Calculator
+namespace SimpleCalculator
 {
     class Program
     {

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Calculator
+namespace SimpleCalculator
 {
-    class Calculator
+    public class Calculator
     {
         public double A { get; set; }
         public double B { get; set; }
