@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 
 namespace SimpleCalculator
@@ -34,7 +35,7 @@ namespace SimpleCalculator
             if (Calculator.CheckOperation(char.Parse(operation)))
             {
                 var result = calculator.Calculate(char.Parse(operation));
-                Console.WriteLine("Result " + result);
+                Console.WriteLine("Result " + result.ToString(CultureInfo.InvariantCulture));
             } else
             {
                 Console.WriteLine("Result cannot be calculated");
