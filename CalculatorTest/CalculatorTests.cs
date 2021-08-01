@@ -19,6 +19,41 @@ namespace CalculatorTest
             Assert.AreEqual(result, calculator.Calculate('+'));
         }
 
+        [Test]
+        [TestCase(10.3, 0, 10.3)]
+        [TestCase(-10, 10, -20)]
+        public void MinusTest(double a, double b, double result)
+        {
+            Calculator calculator = new Calculator(a, b);
+            Assert.AreEqual(result, calculator.Calculate('-'));
+        }
+
+        [Test]
+        [TestCase(10.3, 0, 0)]
+        [TestCase(-10, 10, -100)]
+        public void MultiplyTest(double a, double b, double result)
+        {
+            Calculator calculator = new Calculator(a, b);
+            Assert.AreEqual(result, calculator.Calculate('*'));
+        }
+
+        [Test]
+        [TestCase(10.4, 2, 5.2)]
+        [TestCase(-10, 10, -1)]
+        public void DivideTest(double a, double b, double result)
+        {
+            Calculator calculator = new Calculator(a, b);
+            Assert.AreEqual(result, calculator.Calculate('/'));
+        }
+
+        [Test]
+        [TestCase(2, 0, double.PositiveInfinity)]
+        public void DivideByZeroTest(double a, double b, double result)
+        {
+            Calculator calculator = new Calculator(a, b);
+            Assert.AreEqual(result, calculator.Calculate('/'));
+        }
+
 
     }
 }
