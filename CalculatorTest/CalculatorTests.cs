@@ -1,5 +1,10 @@
 using NUnit.Framework;
 using SimpleCalculator;
+using System;
+using System.Linq;
+using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 
 namespace CalculatorTest
 {
@@ -52,6 +57,38 @@ namespace CalculatorTest
         {
             Calculator calculator = new Calculator(a, b);
             Assert.AreEqual(result, calculator.Calculate('/'));
+        }
+
+        [Test]
+        [TestCaseSource(nameof(DataSource))]
+        public void WithInputFileTest(double a, double b, double result)
+        {
+            Calculator calculator = new Calculator(a, b);
+            Assert.AreEqual(result, calculator.Calculate('+'));
+        }
+
+        private static IEnumerable<double[]> DataSource()
+        {
+            var data = ReadFromTestData("CalculatorData.txt");
+            List<double[]> result = new List<double[]>(); 
+            foreach (var line in data.Split(Environment.NewLine).Skip(1))
+            {
+                var lineData = line.Split(",").Select(x=>double.Parse(x)).ToArray();
+                result.Add(lineData);
+            }
+
+            return result;
+
+        }
+
+        private static string ReadFromTestData(string fileName)
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            using (var stream = assembly.GetManifestResourceStream("CalculatorTest.TestData." + fileName))
+            using (var reader = new StreamReader(stream))
+            {
+                return reader.ReadToEnd();
+            }
         }
 
 
